@@ -25,7 +25,7 @@ def plot_data_from_csv(file_path):
                 current_time += tInc
 
     # Plot the data
-    plt.plot(timestamps, data)
+    plt.plot(timestamps, data, linewidth=1)
     plt.xlabel('Time (s)')
     plt.ylabel('Voltage')
     
