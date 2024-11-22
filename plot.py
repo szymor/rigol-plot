@@ -10,8 +10,8 @@ def plot_data_from_csv(file_path):
         csvreader = csv.reader(csvfile)
         # Read the header to get t0 and tInc
         header = next(csvreader)
-        t0 = float(header[1].split('=')[1].strip().replace('s', ''))
-        tInc = float(header[2].split('=')[1].strip().replace('s', ''))
+        t0 = float(header[1].split('=')[1].strip().replace('s', '').replace('E', 'e'))
+        tInc = float(header[2].split('=')[1].strip().replace('s', '').replace('E', 'e'))
         
         # Extract data and calculate timestamps
         data = []
