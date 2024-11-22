@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import csv
+import argparse
 
 def plot_data_from_csv(file_path):
     # Read the CSV file
@@ -22,4 +23,8 @@ def plot_data_from_csv(file_path):
     plt.close()
 
 if __name__ == "__main__":
-    plot_data_from_csv('example.csv')
+    parser = argparse.ArgumentParser(description='Plot data from a CSV file.')
+    parser.add_argument('file_path', type=str, help='Path to the CSV file')
+    args = parser.parse_args()
+
+    plot_data_from_csv(args.file_path)
