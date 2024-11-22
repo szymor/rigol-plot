@@ -45,7 +45,9 @@ def plot_data_from_csv(file_path):
     else:
         time_scale = 1
         time_unit = 's'
-    plt.plot(timestamps, data, linewidth=1)
+    # Adjust timestamps according to the time scale
+    scaled_timestamps = [t * time_scale for t in timestamps]
+    plt.plot(scaled_timestamps, data, linewidth=1)
     # Plot the data
     plt.plot(timestamps, data, linewidth=1)
     plt.xlabel(f'Time ({time_unit})')
