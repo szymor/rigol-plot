@@ -49,8 +49,11 @@ def plot_data_from_csv(file_path):
     scaled_timestamps = [t * time_scale for t in timestamps]
     plt.plot(scaled_timestamps, data, linewidth=1)
 
-    plt.xlabel(f'Time ({time_unit})')
-    plt.ylabel('Voltage')
+    if not args.no_labels:
+        plt.xlabel(f'Time ({time_unit})')
+        plt.ylabel('Voltage')
+    else:
+        plt.axis('off')
     
     # Save the plot as a PNG file with specified dimensions
     plt.gcf().set_size_inches(args.width / plt.gcf().dpi, args.height / plt.gcf().dpi)
@@ -64,6 +67,7 @@ if __name__ == "__main__":
     parser.add_argument('--end', type=float, default=None, help='End time for the plot')
     parser.add_argument('--width', type=int, default=800, help='Width of the output image in pixels')
     parser.add_argument('--height', type=int, default=600, help='Height of the output image in pixels')
+    parser.add_argument('--no-labels', action='store_true', help='Remove labels and axes from the plot')
     args = parser.parse_args()
 
     plot_data_from_csv(args.file_path)
