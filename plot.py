@@ -29,8 +29,9 @@ def plot_data_from_csv(file_path):
     plt.xlabel('Time (s)')
     plt.ylabel('Voltage')
     
-    # Save the plot as a PNG file
-    plt.savefig('plot.png')
+    # Save the plot as a PNG file with specified dimensions
+    plt.gcf().set_size_inches(args.width / plt.gcf().dpi, args.height / plt.gcf().dpi)
+    plt.savefig('plot.png', dpi=plt.gcf().dpi)
     plt.close()
 
 if __name__ == "__main__":
@@ -38,6 +39,8 @@ if __name__ == "__main__":
     parser.add_argument('file_path', type=str, help='Path to the CSV file')
     parser.add_argument('--start', type=float, default=None, help='Start time for the plot')
     parser.add_argument('--end', type=float, default=None, help='End time for the plot')
+    parser.add_argument('--width', type=int, default=800, help='Width of the output image in pixels')
+    parser.add_argument('--height', type=int, default=600, help='Height of the output image in pixels')
     args = parser.parse_args()
 
     plot_data_from_csv(args.file_path)
