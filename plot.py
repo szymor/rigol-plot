@@ -1,3 +1,5 @@
+#!/bin/env python3
+
 import matplotlib.pyplot as plt
 import csv
 import argparse
@@ -14,9 +16,8 @@ def plot_data_from_csv(file_path):
 
     # Plot the data
     plt.plot(data)
-    plt.title('Data Plot')
     plt.xlabel('Sample Number')
-    plt.ylabel('Value')
+    plt.ylabel('Voltage')
     
     # Save the plot as a PNG file
     plt.savefig('plot.png')
