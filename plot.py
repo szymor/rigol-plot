@@ -24,9 +24,31 @@ def plot_data_from_csv(file_path):
                     timestamps.append(current_time)
                 current_time += tInc
 
+    # Determine the appropriate time scale for labels
+    if timestamps:
+        time_range = max(timestamps) - min(timestamps)
+        if time_range < 1e-9:
+            time_scale = 1e12
+            time_unit = 'ps'
+        elif time_range < 1e-6:
+            time_scale = 1e9
+            time_unit = 'ns'
+        elif time_range < 1e-3:
+            time_scale = 1e6
+            time_unit = 'µs'
+        elif time_range < 1:
+            time_scale = 1e3
+            time_unit = 'ms'
+        else:
+            time_scale = 1
+            time_unit = 's'
+    else:
+        time_scale = 1
+        time_unit = 's'
+    plt.plot(timestamps, data, linewidth=1)
     # Plot the data
     plt.plot(timestamps, data, linewidth=1)
-    plt.xlabel('Time (s)')
+    plt.xlabel(f'Time ({time_unit})')
     plt.ylabel('Voltage')
     
     # Save the plot as a PNG file with specified dimensions
